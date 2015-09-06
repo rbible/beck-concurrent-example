@@ -1,9 +1,9 @@
-package com.olmlo.thread.chapter9.recipe2.core;
+package com.olmlo.thread.synchronize;
 
 /**
  * This class simulates a sensor in the building
  */
-public class Sensor1 implements Runnable {
+public class Sensor2 implements Runnable {
 
 	/**
 	 * Object with the statistics of the building
@@ -14,7 +14,7 @@ public class Sensor1 implements Runnable {
 	 * Constructor of the class
 	 * @param stats object with the statistics of the building
 	 */
-	public Sensor1(BuildStats stats){
+	public Sensor2(BuildStats stats){
 		this.stats=stats;
 	}
 	
@@ -25,9 +25,9 @@ public class Sensor1 implements Runnable {
 	public void run() {
 		stats.comeIn();
 		stats.comeIn();
-		stats.comeIn();
 		stats.goOut();
-		stats.comeIn();
+		stats.goOut();
+		stats.goOut();
 	}
 
 }

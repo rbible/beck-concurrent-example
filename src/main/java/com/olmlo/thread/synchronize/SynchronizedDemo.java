@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter9.recipe2.core;
+package com.olmlo.thread.synchronize;
 
 import java.util.Date;
 
@@ -8,12 +8,8 @@ import java.util.Date;
  * building and executes two threads that simulates two sensors in the building
  *
  */
-public class Main {
+public class SynchronizedDemo {
 
-	/**
-	 * Main method of the example
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		
 		// Create a new object for the statistics
@@ -46,7 +42,6 @@ public class Main {
 		Date date2=new Date();
 		stats.printStats();
 		System.out.println("Execution Time: "+((date2.getTime()-date1.getTime())/1000));
-
 	}
 
 }
