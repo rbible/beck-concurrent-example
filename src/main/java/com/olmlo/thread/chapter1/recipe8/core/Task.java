@@ -6,15 +6,14 @@ package com.olmlo.thread.chapter1.recipe8.core;
  */
 public class Task implements Runnable {
 
-
-	/**
-	 * Main method of the class
-	 */
-	@Override
-	public void run() {
-		// The next instruction always throws and exception
-//		int numero=
-		        Integer.parseInt("TTT");
-	}
+    /**
+     * Main method of the class
+     */
+    @Override
+    public void run() {
+        // The next instruction always throws and exception
+        // int numero=
+        Integer.parseInt("TTT");
+    }
 
 }

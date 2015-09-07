@@ -1,4 +1,5 @@
 package com.olmlo.thread.chapter7.reciper07.core;
+
 import java.util.Date;
 import java.util.concurrent.ForkJoinTask;
 
@@ -10,69 +11,69 @@ import java.util.concurrent.ForkJoinTask;
  */
 public abstract class MyWorkerTask extends ForkJoinTask<Void> {
 
-	/**
-	 * Serial Version UID of the class
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * Serial Version UID of the class
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Name of the task 
-	 */
-	private String name;
-	
-	/**
-	 * Constructor of the class. Initializes its attributes 
-	 * @param name Name of the task
-	 */
-	public MyWorkerTask(String name) {
-		this.name=name;
-	}
+    /**
+     * Name of the task 
+     */
+    private String name;
 
-	/**
-	 * Method that returns the result of the task. In this case, as 
-	 * the task doesn't return a result, it returns a null value
-	 */
-	@Override
-	public Void getRawResult() {
-		return null;
-	}
+    /**
+     * Constructor of the class. Initializes its attributes 
+     * @param name Name of the task
+     */
+    public MyWorkerTask(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * Method that establish the result of the task. In this case, as
-	 * the task doesn't return a result, this method is empty
-	 */
-	@Override
-	protected void setRawResult(Void value) {
-		
-	}
+    /**
+     * Method that returns the result of the task. In this case, as 
+     * the task doesn't return a result, it returns a null value
+     */
+    @Override
+    public Void getRawResult() {
+        return null;
+    }
 
-	/**
-	 * Main method of the task. Is called by the Fork/Join pool. It calls
-	 * the compute() method that is an abstract method that have to be
-	 * implemented by the tasks that extend this class, calculating its execution
-	 * time and writing it in the console
-	 */
-	@Override
-	protected boolean exec() {
-		Date startDate=new Date();
-		compute();
-		Date finishDate=new Date();
-		long diff=finishDate.getTime()-startDate.getTime();
-		System.out.printf("MyWorkerTask: %s : %d Milliseconds to complete.\n",name,diff);
-		return true;
-	}
+    /**
+     * Method that establish the result of the task. In this case, as
+     * the task doesn't return a result, this method is empty
+     */
+    @Override
+    protected void setRawResult(Void value) {
 
-	/**
-	 * Method that returns the name of the console
-	 * @return The name of the task
-	 */
-	public String getName(){
-		return name;
-	}
-	
-	/**
-	 * Main method of the child tasks. It has to be overridden in the child classes 
-	 * and implement on it its main logic
-	 */
-	protected abstract void compute();
+    }
+
+    /**
+     * Main method of the task. Is called by the Fork/Join pool. It calls
+     * the compute() method that is an abstract method that have to be
+     * implemented by the tasks that extend this class, calculating its execution
+     * time and writing it in the console
+     */
+    @Override
+    protected boolean exec() {
+        Date startDate = new Date();
+        compute();
+        Date finishDate = new Date();
+        long diff = finishDate.getTime() - startDate.getTime();
+        System.out.printf("MyWorkerTask: %s : %d Milliseconds to complete.\n", name, diff);
+        return true;
+    }
+
+    /**
+     * Method that returns the name of the console
+     * @return The name of the task
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Main method of the child tasks. It has to be overridden in the child classes 
+     * and implement on it its main logic
+     */
+    protected abstract void compute();
 }

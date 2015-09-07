@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter9.recipe03.core;
+package com.olmlo.thread.demo.productconsumer;
 
 import java.util.concurrent.LinkedTransferQueue;
 

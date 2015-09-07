@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter9.recipe06.core;
+package com.olmlo.thread.throwexception;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 

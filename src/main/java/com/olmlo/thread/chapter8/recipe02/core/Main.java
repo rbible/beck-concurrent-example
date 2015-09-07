@@ -23,13 +23,9 @@ public class Main {
             threads[i].start();
         }
 
-        /*
-         * Create a loop with 15 steps
-         */
+        /* Create a loop with 15 steps */
         for (int i = 0; i < 15; i++) {
-            /*
-             * Write info about the lock
-             */
+            /* Write info about the lock */
             System.out.printf("Main: Logging the Lock\n");
             System.out.printf("************************\n");
             System.out.printf("Lock: Owner : %s\n", lock.getOwnerName());
@@ -46,9 +42,7 @@ public class Main {
             System.out.printf("Lock: Fairness: %s\n", lock.isFair());
             System.out.printf("Lock: Locked: %s\n", lock.isLocked());
             System.out.printf("************************\n");
-            /*
-             * Sleep the thread for one second
-             */
+            /* Sleep the thread for one second */
             TimeUnit.SECONDS.sleep(1);
         }
     }
@@ -107,28 +101,21 @@ class Task implements Runnable {
      */
     @Override
     public void run() {
-        /*
-         * Loop with five steps
-         */
+        /* Loop with five steps */
         for (int i = 0; i < 5; i++) {
-            /*
-             * Acquire the lock
-             */
+            /* Acquire the lock */
             lock.lock();
             System.out.printf("%s: Get the Lock.\n", Thread.currentThread().getName());
-            /*
-             * Sleeps the thread 500 milliseconds
-             */
+            /* Sleeps the thread 500 milliseconds */
             try {
                 TimeUnit.MILLISECONDS.sleep(500);
                 System.out.printf("%s: Free the Lock.\n", Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
-                /*
-                 * Free the lock
-                 */
+                /* Free the lock */
                 lock.unlock();
+                
             }
         }
     }

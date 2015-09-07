@@ -1,5 +1,6 @@
 package com.olmlo.thread.chapter1.recipe5.core;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -8,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * and interrupts it. 
  *
  */
-public class Main {
+public class InterruptsDemo {
 
     /**
      * @param args
@@ -27,8 +28,26 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        ;
+
         // Interrupts the Thread
         thread.interrupt();
+    }
+}
+
+class FileClock implements Runnable {
+    /**
+     * Main method of the class
+     */
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.printf("%s\n", new Date());
+            try {
+                // Sleep during one second
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                System.out.printf("The FileClock has been interrupted");
+            }
+        }
     }
 }

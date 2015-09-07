@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter8.recipe04.core;
+package com.olmlo.thread.sync;
 
 import java.util.concurrent.Phaser;
 import java.util.concurrent.TimeUnit;
@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * class of the example. Creates a Phaser with three participants and Three task objects. Write information about the
  * evolution of the Phaser
  */
-public class Main {
+public class PhaserDemo {
 
     /**
      * @param args
@@ -90,6 +90,7 @@ class Task implements Runnable {
          * End of Phase 1
          */
         phaser.arriveAndAwaitAdvance();
+        
         /*
          * Phase 2
          */
@@ -104,6 +105,7 @@ class Task implements Runnable {
          * End of Phase 2
          */
         phaser.arriveAndAwaitAdvance();
+        
         /*
          * Phase 3
          */

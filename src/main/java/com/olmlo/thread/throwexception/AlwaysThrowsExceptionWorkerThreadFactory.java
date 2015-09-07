@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter9.recipe06.core;
+package com.olmlo.thread.throwexception;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinWorkerThread;
@@ -14,14 +14,13 @@ import java.util.concurrent.ForkJoinPool.ForkJoinWorkerThreadFactory;
  */
 public class AlwaysThrowsExceptionWorkerThreadFactory implements ForkJoinWorkerThreadFactory {
 
-	/**
-	 * This method creates a new Worker Thread.
-	 * @param pool The ForkJoinPool where the thread that is creater
-	 * is going to execute
-	 */
-	@Override
-	public ForkJoinWorkerThread newThread(ForkJoinPool pool) {
-		return new AlwaysThrowsExceptionWorkerThread(pool);
-	}
-
+    /**
+     * This method creates a new Worker Thread.
+     * @param pool The ForkJoinPool where the thread that is creater
+     * is going to execute
+     */
+    @Override
+    public ForkJoinWorkerThread newThread(ForkJoinPool pool) {
+        return new AlwaysThrowsExceptionWorkerThread(pool);
+    }
 }

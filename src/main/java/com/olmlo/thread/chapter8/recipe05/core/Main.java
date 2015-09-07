@@ -12,9 +12,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class Main {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) throws Exception {
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
         Random random = new Random();
