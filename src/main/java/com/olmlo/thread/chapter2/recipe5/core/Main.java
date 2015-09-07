@@ -13,7 +13,7 @@ public class Main {
     public static void main(String args[]) {
         // Creates the print queue
         PrintQueue printQueue = new PrintQueue();
- 
+
         // Creates ten jobs and the Threads to run them
         Thread thread[] = new Thread[10];
         for (int i = 0; i < 10; i++) {

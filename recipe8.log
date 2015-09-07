@@ -1,0 +1,28 @@
+[FINER] - Mon Sep 07 11:00:48 CST 2015 : Core.main() : ENTRY
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Launching thread: 0
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread created: Thread-1
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Launching thread: 1
+[FINER] - Mon Sep 07 11:00:48 CST 2015 : Thread-1.run() : ENTRY
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread created: Thread-2
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Launching thread: 2
+[FINER] - Mon Sep 07 11:00:48 CST 2015 : Thread-2.run() : ENTRY
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread created: Thread-3
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Launching thread: 3
+[FINER] - Mon Sep 07 11:00:48 CST 2015 : Thread-3.run() : ENTRY
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread created: Thread-4
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Launching thread: 4
+[FINER] - Mon Sep 07 11:00:48 CST 2015 : Thread-4.run() : ENTRY
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread created: Thread-5
+[INFO] - Mon Sep 07 11:00:48 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Ten Threads created. Waiting for its finalization
+[FINER] - Mon Sep 07 11:00:48 CST 2015 : Thread-5.run() : ENTRY
+[FINER] - Mon Sep 07 11:00:50 CST 2015 : Thread-1.run() : RETURN {0}
+[INFO] - Mon Sep 07 11:00:50 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread has finished its execution
+[FINER] - Mon Sep 07 11:00:50 CST 2015 : Thread-2.run() : RETURN {0}
+[INFO] - Mon Sep 07 11:00:50 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread has finished its execution
+[FINER] - Mon Sep 07 11:00:50 CST 2015 : Thread-3.run() : RETURN {0}
+[INFO] - Mon Sep 07 11:00:50 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread has finished its execution
+[FINER] - Mon Sep 07 11:00:50 CST 2015 : Thread-4.run() : RETURN {0}
+[INFO] - Mon Sep 07 11:00:50 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread has finished its execution
+[FINER] - Mon Sep 07 11:00:50 CST 2015 : Thread-5.run() : RETURN {0}
+[INFO] - Mon Sep 07 11:00:50 CST 2015 : com.olmlo.thread.chapter8.recipe07.core.Main.main : Thread has finished its execution
+[FINER] - Mon Sep 07 11:00:50 CST 2015 : Main.main() : RETURN

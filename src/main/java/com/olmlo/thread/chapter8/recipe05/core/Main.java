@@ -60,7 +60,6 @@ public class Main {
         System.out.printf("Main: Executor: Terminated: %s\n", executor.isTerminated());
         System.out.printf("*********************\n");
     }
-
 }
 
 class Task implements Runnable {
@@ -92,7 +91,5 @@ class Task implements Runnable {
             e.printStackTrace();
         }
         System.out.printf("%s: End\n", Thread.currentThread().getName());
-
     }
-
 }
