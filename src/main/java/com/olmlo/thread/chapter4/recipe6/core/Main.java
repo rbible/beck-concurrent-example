@@ -10,8 +10,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Main class of the example. Launch three tasks using the invokeAll() method
- * and then prints their results to the console
+ * Main class of the example. Launch three tasks using the invokeAll() method and then prints their results to the
+ * console
  *
  */
 public class Main {
@@ -19,7 +19,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Create an executor
-        ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newCachedThreadPool();
 
         // Create three tasks and stores them in a List
         List<Task> taskList = new ArrayList<>();
@@ -59,12 +59,13 @@ class Result {
      */
     private String name;
     /**
-     * The value of the task that generates the result 
+     * The value of the task that generates the result
      */
     private int value;
 
     /**
      * Returns the name of the task
+     * 
      * @return Name of the task that generates the result
      */
     public String getName() {
@@ -73,7 +74,9 @@ class Result {
 
     /**
      * Establish the name of the task
-     * @param name The name of the task that generates the result
+     * 
+     * @param name
+     *            The name of the task that generates the result
      */
     public void setName(String name) {
         this.name = name;
@@ -81,6 +84,7 @@ class Result {
 
     /**
      * Returns the value of the result
+     * 
      * @return The value of the result
      */
     public int getValue() {
@@ -89,7 +93,9 @@ class Result {
 
     /**
      * Establish the value of the result
-     * @param value The value of the result
+     * 
+     * @param value
+     *            The value of the result
      */
     public void setValue(int value) {
         this.value = value;
@@ -106,15 +112,16 @@ class Task implements Callable<Result> {
 
     /**
      * Constructor of the class
-     * @param name Initializes the name of the task
+     * 
+     * @param name
+     *            Initializes the name of the task
      */
     public Task(String name) {
         this.name = name;
     }
 
     /**
-     * Main method of the task. Waits during a random period of time and then
-     * calculates the sum of five random numbers
+     * Main method of the task. Waits during a random period of time and then calculates the sum of five random numbers
      */
     @Override
     public Result call() throws Exception {

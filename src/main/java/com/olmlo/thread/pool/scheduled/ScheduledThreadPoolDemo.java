@@ -7,24 +7,21 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Main class of the example. Send 5 tasks to an scheduled executor
- *   Task 0: Delay of 1 second
- *   Task 1: Delay of 2 seconds
- *   Task 2: Delay of 3 seconds
- *   Task 3: Delay of 4 seconds
- *   Task 4: Delay of 5 seconds 
+ * Main class of the example. Send 5 tasks to an scheduled executor Task 0: Delay of 1 second Task 1: Delay of 2 seconds
+ * Task 2: Delay of 3 seconds Task 3: Delay of 4 seconds Task 4: Delay of 5 seconds
  *
  */
 public class ScheduledThreadPoolDemo {
 
     /**
      * Main method of the example
+     * 
      * @param args
      */
     public static void main(String[] args) {
 
         // Create a ScheduledThreadPoolExecutor
-        ScheduledExecutorService executor = (ScheduledExecutorService) Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
         System.out.printf("Main: Starting at: %s\n", new Date());
 
@@ -58,15 +55,17 @@ class ScheduledThreadPoolTask implements Callable<String> {
 
     /**
      * Constructor of the class
-     * @param name Name of the task
+     * 
+     * @param name
+     *            Name of the task
      */
     public ScheduledThreadPoolTask(String name) {
         this.name = name;
     }
 
     /**
-     * Main method of the task. Writes a message to the console with
-     * the actual date and returns the 'Hello world' string
+     * Main method of the task. Writes a message to the console with the actual date and returns the 'Hello world'
+     * string
      */
     @Override
     public String call() throws Exception {

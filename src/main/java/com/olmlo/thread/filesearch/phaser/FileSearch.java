@@ -111,12 +111,11 @@ public class FileSearch implements Runnable {
 			// No results. Phase is completed but no more work to do. Deregister for the phaser
 			phaser.arriveAndDeregister();
 			return false;
-		} else {
-			// There are results. Phase is completed. Wait to continue with the next phase
-			System.out.printf("%s: Phase %d: %d results.\n",Thread.currentThread().getName(),phaser.getPhase(),results.size());
-			phaser.arriveAndAwaitAdvance();
-			return true;
-		}		
+		}
+        // There are results. Phase is completed. Wait to continue with the next phase
+        System.out.printf("%s: Phase %d: %d results.\n",Thread.currentThread().getName(),phaser.getPhase(),results.size());
+        phaser.arriveAndAwaitAdvance();
+        return true;		
 	}
 
 	/**

@@ -63,15 +63,13 @@ public class MyScheduledTask<V> extends FutureTask<V> implements RunnableSchedul
     public long getDelay(TimeUnit unit) {
         if (!isPeriodic()) {
             return task.getDelay(unit);
-        } else {
-            if (startDate == 0) {
-                return task.getDelay(unit);
-            } else {
-                Date now = new Date();
-                long delay = startDate - now.getTime();
-                return unit.convert(delay, TimeUnit.MILLISECONDS);
-            }
         }
+        if (startDate == 0) {
+            return task.getDelay(unit);
+        }
+        Date now = new Date();
+        long delay = startDate - now.getTime();
+        return unit.convert(delay, TimeUnit.MILLISECONDS);
     }
 
     /**

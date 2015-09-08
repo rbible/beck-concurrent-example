@@ -70,13 +70,12 @@ class ParkingCounter extends AtomicInteger {
             if (value == maxNumber) {
                 System.out.printf("ParkingCounter: The parking is full.\n");
                 return false;
-            } else {
-                int newValue = value + 1;
-                boolean changed = compareAndSet(value, newValue);
-                if (changed) {
-                    System.out.printf("ParkingCounter: A car has entered.\n");
-                    return true;
-                }
+            }
+            int newValue = value + 1;
+            boolean changed = compareAndSet(value, newValue);
+            if (changed) {
+                System.out.printf("ParkingCounter: A car has entered.\n");
+                return true;
             }
         }
     }
@@ -94,13 +93,12 @@ class ParkingCounter extends AtomicInteger {
             if (value == 0) {
                 System.out.printf("ParkingCounter: The parking is empty.\n");
                 return false;
-            } else {
-                int newValue = value - 1;
-                boolean changed = compareAndSet(value, newValue);
-                if (changed) {
-                    System.out.printf("ParkingCounter: A car has gone out.\n");
-                    return true;
-                }
+            }
+            int newValue = value - 1;
+            boolean changed = compareAndSet(value, newValue);
+            if (changed) {
+                System.out.printf("ParkingCounter: A car has gone out.\n");
+                return true;
             }
         }
     }

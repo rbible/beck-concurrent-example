@@ -8,20 +8,20 @@ import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Main class of the example. Creates five tasks that wait a random period of time.
- * Waits 5 seconds and cancel all the tasks. Then, write the results of that tasks
- * that haven't been cancelled.
+ * Main class of the example. Creates five tasks that wait a random period of time. Waits 5 seconds and cancel all the
+ * tasks. Then, write the results of that tasks that haven't been cancelled.
  *
  */
 public class Main {
 
     /**
      * Main method of the class.
+     * 
      * @param args
      */
     public static void main(String[] args) {
         // Create an executor
-        ExecutorService executor = (ExecutorService) Executors.newCachedThreadPool();
+        ExecutorService executor = Executors.newCachedThreadPool();
 
         // Create five tasks
         ResultTask resultTasks[] = new ResultTask[5];
@@ -70,7 +70,9 @@ class ExecutableTask implements Callable<String> {
 
     /**
      * Constructor of the class
-     * @param name The name of the class
+     * 
+     * @param name
+     *            The name of the class
      */
     public ExecutableTask(String name) {
         this.name = name;
@@ -92,6 +94,7 @@ class ExecutableTask implements Callable<String> {
 
     /**
      * This method returns the name of the task
+     * 
      * @return The name of the task
      */
     public String getName() {
@@ -102,14 +105,15 @@ class ExecutableTask implements Callable<String> {
 class ResultTask extends FutureTask<String> {
 
     /**
-     * Name of the ResultTask. It's initialized with the name of the
-     * ExecutableTask that manages
+     * Name of the ResultTask. It's initialized with the name of the ExecutableTask that manages
      */
     private String name;
 
     /**
-     * Constructor of the Class. Override one of the constructor of its parent class 
-     * @param callable The task this object manages
+     * Constructor of the Class. Override one of the constructor of its parent class
+     * 
+     * @param callable
+     *            The task this object manages
      */
     public ResultTask(Callable<String> callable) {
         super(callable);

@@ -100,21 +100,19 @@ public class MyPriorityTransferQueue<E> extends PriorityBlockingQueue<E> impleme
 			put(e);
 			lock.unlock();
 			return true;
-		} else {
-			transfered.add(e);
-			long newTimeout=TimeUnit.MILLISECONDS.convert(timeout, unit);
-			lock.unlock();
-			e.wait(newTimeout);
-			lock.lock();
-			if (transfered.contains(e)) {
-				transfered.remove(e);
-				lock.unlock();
-				return false;
-			} else {
-				lock.unlock();
-				return true;
-			}
 		}
+        transfered.add(e);
+        long newTimeout=TimeUnit.MILLISECONDS.convert(timeout, unit);
+        lock.unlock();
+        e.wait(newTimeout);
+        lock.lock();
+        if (transfered.contains(e)) {
+        	transfered.remove(e);
+        	lock.unlock();
+        	return false;
+        }
+        lock.unlock();
+        return true;
 	}
 
 

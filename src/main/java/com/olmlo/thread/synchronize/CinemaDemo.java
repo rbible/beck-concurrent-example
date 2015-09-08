@@ -76,9 +76,8 @@ class Cinema {
             if (number < vacanciesCinema1) {
                 vacanciesCinema1 -= number;
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
     }
 
@@ -92,9 +91,8 @@ class Cinema {
             if (number < vacanciesCinema2) {
                 vacanciesCinema2 -= number;
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
     }
 
