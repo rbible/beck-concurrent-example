@@ -12,17 +12,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class LinkedBlockingDequeDemo {
 
-    /**
-     * Main method of the class
-     * @param args
-     */
     public static void main(String[] args) throws Exception {
 
         // Create a ConcurrentLinkedDeque to work with it in the example
         LinkedBlockingDeque<String> list = new LinkedBlockingDeque<>(3);
 
-        Client client = new Client(list);
-        Thread thread = new Thread(client);
+        Thread thread = new Thread(new Client(list));
         thread.start();
 
         for (int i = 0; i < 5; i++) {
@@ -49,9 +44,7 @@ class Client implements Runnable {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 5; j++) {
                 StringBuilder request = new StringBuilder();
-                request.append(i);
-                request.append(":");
-                request.append(j);
+                request.append(i).append(":").append(j);
                 try {
                     requestList.put(request.toString());
                 } catch (InterruptedException e) {
