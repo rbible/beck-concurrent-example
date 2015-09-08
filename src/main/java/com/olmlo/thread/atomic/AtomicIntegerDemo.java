@@ -2,25 +2,14 @@ package com.olmlo.thread.atomic;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Main class of the example
- *
- */
 public class AtomicIntegerDemo {
-
-    /**
-     * @param args
-     */
     public static void main(String[] args) throws Exception {
         /* Create a ParkingCounter object */
         ParkingCounter counter = new ParkingCounter(5);
 
         /* Create and launch two sensors */
-        Sensor1 sensor1 = new Sensor1(counter);
-        Sensor2 sensor2 = new Sensor2(counter);
-
-        Thread thread1 = new Thread(sensor1);
-        Thread thread2 = new Thread(sensor2);
+        Thread thread1 = new Thread(new Sensor1(counter));
+        Thread thread2 = new Thread(new Sensor2(counter));
 
         thread1.start();
         thread2.start();
@@ -39,9 +28,6 @@ public class AtomicIntegerDemo {
 
 class ParkingCounter extends AtomicInteger {
 
-    /**
-     * Serial Version UID of the class 
-     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -51,7 +37,9 @@ class ParkingCounter extends AtomicInteger {
 
     /**
      * Constructor of the class
-     * @param maxNumber Max number accepter by this counter
+     * 
+     * @param maxNumber
+     *            Max number accepter by this counter
      */
     public ParkingCounter(int maxNumber) {
         set(0);
@@ -59,9 +47,9 @@ class ParkingCounter extends AtomicInteger {
     }
 
     /**
-     * Method that increments the internal counter if it has
-     * a value less than the maximum. Is implemented to be and
+     * Method that increments the internal counter if it has a value less than the maximum. Is implemented to be and
      * atomic operation
+     * 
      * @return True if the car can enter in the parking, false if not.
      */
     public boolean carIn() {
@@ -81,11 +69,10 @@ class ParkingCounter extends AtomicInteger {
     }
 
     /**
-     * Method that decrements the internal counter if it has
-     * a value bigger than 0. Is implemented to be and
-     * atomic operation
-     * @return True if the car leave the parking, false if there are 0 cars 
-     * in the parking
+     * Method that decrements the internal counter if it has a value bigger than 0. Is implemented to be and atomic
+     * operation
+     * 
+     * @return True if the car leave the parking, false if there are 0 cars in the parking
      */
     public boolean carOut() {
         for (;;) {
@@ -114,14 +101,16 @@ class Sensor1 implements Runnable {
 
     /**
      * Constructor of the class. It initializes its attributes
-     * @param counter Counter of cars in the parking
+     * 
+     * @param counter
+     *            Counter of cars in the parking
      */
     public Sensor1(ParkingCounter counter) {
         this.counter = counter;
     }
 
     /**
-     * Main method of the sensor. Simulates the traffic in the door of the parking
+     * Main method of the sensor. Simulates the traffic in the door of the parking. total: 4+3 car in,3 car out
      */
     @Override
     public void run() {
@@ -129,14 +118,15 @@ class Sensor1 implements Runnable {
         counter.carIn();
         counter.carIn();
         counter.carIn();
+
         counter.carOut();
         counter.carOut();
         counter.carOut();
+
         counter.carIn();
         counter.carIn();
         counter.carIn();
     }
-
 }
 
 class Sensor2 implements Runnable {
@@ -148,20 +138,24 @@ class Sensor2 implements Runnable {
 
     /**
      * Constructor of the class. It initializes its attributes
-     * @param counter Counter of cars in the parking
+     * 
+     * @param counter
+     *            Counter of cars in the parking
      */
     public Sensor2(ParkingCounter counter) {
         this.counter = counter;
     }
 
     /**
-     * Main method of the sensor. Simulates the traffic in the door of the parking
+     * Main method of the sensor. Simulates the traffic in the door of the parking. total:1+6 car in,2 car out
      */
     @Override
     public void run() {
         counter.carIn();
+
         counter.carOut();
         counter.carOut();
+
         counter.carIn();
         counter.carIn();
         counter.carIn();
@@ -169,5 +163,4 @@ class Sensor2 implements Runnable {
         counter.carIn();
         counter.carIn();
     }
-
 }
