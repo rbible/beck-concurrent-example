@@ -1,8 +1,10 @@
 package com.olmlo.thread.chapter4.recipe10.core;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -55,6 +57,75 @@ public class Main {
         // Finish the executor.
         executor.shutdown();
 
+    }
+
+}
+
+class ExecutableTask implements Callable<String> {
+
+    /**
+     * The name of the class
+     */
+    private String name;
+
+    /**
+     * Constructor of the class
+     * @param name The name of the class
+     */
+    public ExecutableTask(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Main method of the task. It waits a random period of time and returns a message
+     */
+    @Override
+    public String call() throws Exception {
+        try {
+            Long duration = (long) (Math.random() * 10);
+            System.out.printf("%s: Waiting %d seconds for results.\n", this.name, duration);
+            TimeUnit.SECONDS.sleep(duration);
+        } catch (InterruptedException e) {
+        }
+        return "Hello, world. I'm " + name;
+    }
+
+    /**
+     * This method returns the name of the task
+     * @return The name of the task
+     */
+    public String getName() {
+        return name;
+    }
+}
+
+class ResultTask extends FutureTask<String> {
+
+    /**
+     * Name of the ResultTask. It's initialized with the name of the
+     * ExecutableTask that manages
+     */
+    private String name;
+
+    /**
+     * Constructor of the Class. Override one of the constructor of its parent class 
+     * @param callable The task this object manages
+     */
+    public ResultTask(Callable<String> callable) {
+        super(callable);
+        this.name = ((ExecutableTask) callable).getName();
+    }
+
+    /**
+     * Method that is called when the task finish.
+     */
+    @Override
+    protected void done() {
+        if (isCancelled()) {
+            System.out.printf("%s: Has been cancelled\n", name);
+        } else {
+            System.out.printf("%s: Has finished\n", name);
+        }
     }
 
 }

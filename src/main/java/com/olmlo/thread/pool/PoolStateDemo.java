@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter4.recipe1.core;
+package com.olmlo.thread.pool;
 
 import java.util.Date;
 import java.util.concurrent.Executors;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * that sends to the server
  *
  */
-public class Main {
+public class PoolStateDemo {
 
     public static void main(String[] args) {
         // Create the server
