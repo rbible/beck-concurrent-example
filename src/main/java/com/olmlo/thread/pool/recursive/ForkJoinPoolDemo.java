@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter5.recipe01.core;
+package com.olmlo.thread.pool.recursive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +10,14 @@ import java.util.concurrent.TimeUnit;
  * Main class of the example. It creates a list of products, a ForkJoinPool and 
  * a task to execute the actualization of products. 
  */
-public class Main {
+public class ForkJoinPoolDemo {
 
     public static void main(String[] args) {
 
         ProductListGenerator generator = new ProductListGenerator();
-        List<Product> products = generator.generate(10000);
+        List<Product> products = generator.generate(100);
 
-        Task task = new Task(products, 0, products.size(), 0.20);
+        ForkJoinTask task = new ForkJoinTask(products, 0, products.size(), 0.20);
 
         ForkJoinPool pool = new ForkJoinPool();
         pool.execute(task);
@@ -116,7 +116,7 @@ class ProductListGenerator {
     }
 }
 
-class Task extends RecursiveAction {
+class ForkJoinTask extends RecursiveAction {
 
     /**
      * serial version UID. The ForkJoinTask class implements the serializable interface.
@@ -146,7 +146,7 @@ class Task extends RecursiveAction {
      * @param last last element of the list assigned to the task
      * @param increment price increment that this task has to apply
      */
-    public Task(List<Product> products, int first, int last, double increment) {
+    public ForkJoinTask(List<Product> products, int first, int last, double increment) {
         this.products = products;
         this.first = first;
         this.last = last;
@@ -163,8 +163,8 @@ class Task extends RecursiveAction {
         } else {
             int middle = (last + first) / 2;
             System.out.printf("Task: Pending tasks: %s\n", getQueuedTaskCount());
-            Task t1 = new Task(products, first, middle + 1, increment);
-            Task t2 = new Task(products, middle + 1, last, increment);
+            ForkJoinTask t1 = new ForkJoinTask(products, first, middle + 1, increment);
+            ForkJoinTask t2 = new ForkJoinTask(products, middle + 1, last, increment);
             invokeAll(t1, t2);
         }
     }
