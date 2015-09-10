@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter5.recipe03.core;
+package com.olmlo.thread.pool.recursive;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Main class of the example
  */
-public class Main {
+public class ForkJoinPoolRecursiveDemo {
 
     /**
      * Main method of the example

@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter6.recipe04.core;
+package com.olmlo.thread.collection;
 
 import java.util.concurrent.PriorityBlockingQueue;
 
@@ -9,21 +9,21 @@ import java.util.concurrent.PriorityBlockingQueue;
  * PriorityBlockingQueue class
  *
  */
-public class Main {
+public class PriorityBlockingQueueDemo {
 
     /**
      * @param args
      */
     public static void main(String[] args) {
         /* Priority queue to store the events */
-        PriorityBlockingQueue<Event> queue = new PriorityBlockingQueue<>();
+        PriorityBlockingQueue<PriorityBlockingQueueEvent> queue = new PriorityBlockingQueue<>();
 
         /* An array to store the five Thread objects */
         Thread taskThreads[] = new Thread[5];
 
         /* Create the five threads to execute five tasks */
         for (int i = 0; i < taskThreads.length; i++) {
-            Task task = new Task(i, queue);
+            PriorityBlockingQueueTask task = new PriorityBlockingQueueTask(i, queue);
             taskThreads[i] = new Thread(task);
         }
 
@@ -44,7 +44,7 @@ public class Main {
         /* Write the events in the console */
         System.out.printf("Main: Queue Size: %d\n", queue.size());
         for (int i = 0; i < taskThreads.length * 1000; i++) {
-            Event event = queue.poll();
+            PriorityBlockingQueueEvent event = queue.poll();
             System.out.printf("Thread %s: Priority %d\n", event.getThread(), event.getPriority());
         }
         System.out.printf("Main: Queue Size: %d\n", queue.size());
@@ -52,7 +52,7 @@ public class Main {
     }
 }
 
-class Event implements Comparable<Event> {
+class PriorityBlockingQueueEvent implements Comparable<PriorityBlockingQueueEvent> {
 
     /**
      * Number of the thread that generates the event
@@ -68,7 +68,7 @@ class Event implements Comparable<Event> {
      * @param thread Number of the thread that generates the event
      * @param priority Priority of the event
      */
-    public Event(int thread, int priority) {
+    public PriorityBlockingQueueEvent(int thread, int priority) {
         this.thread = thread;
         this.priority = priority;
     }
@@ -94,7 +94,7 @@ class Event implements Comparable<Event> {
      * Method that compares two events and decide which has more priority
      */
     @Override
-    public int compareTo(Event e) {
+    public int compareTo(PriorityBlockingQueueEvent e) {
         if (this.priority > e.getPriority()) {
             return -1;
         } else if (this.priority < e.getPriority()) {
@@ -105,7 +105,7 @@ class Event implements Comparable<Event> {
     }
 }
 
-class Task implements Runnable {
+class PriorityBlockingQueueTask implements Runnable {
 
     /**
      * Id of the task
@@ -115,14 +115,14 @@ class Task implements Runnable {
     /**
      * Priority queue to store the events
      */
-    private PriorityBlockingQueue<Event> queue;
+    private PriorityBlockingQueue<PriorityBlockingQueueEvent> queue;
 
     /**
      * Constructor of the class. It initializes its attributes
      * @param id Id of the task 
      * @param queue Priority queue to store the events
      */
-    public Task(int id, PriorityBlockingQueue<Event> queue) {
+    public PriorityBlockingQueueTask(int id, PriorityBlockingQueue<PriorityBlockingQueueEvent> queue) {
         this.id = id;
         this.queue = queue;
     }
@@ -134,7 +134,7 @@ class Task implements Runnable {
     @Override
     public void run() {
         for (int i = 0; i < 1000; i++) {
-            Event event = new Event(id, i);
+            PriorityBlockingQueueEvent event = new PriorityBlockingQueueEvent(id, i);
             queue.add(event);
         }
     }

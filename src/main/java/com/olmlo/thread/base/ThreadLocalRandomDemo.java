@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter6.recipe07.core;
+package com.olmlo.thread.base;
 
 import java.util.concurrent.ThreadLocalRandom;
 

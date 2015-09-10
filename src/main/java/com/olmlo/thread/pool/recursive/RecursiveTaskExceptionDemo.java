@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter5.recipe04.core;
+package com.olmlo.thread.pool.recursive;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  * and process the exception thrown by the Task
  *
  */
-public class Main {
+public class RecursiveTaskExceptionDemo {
 
     /**
      * Main method of the class

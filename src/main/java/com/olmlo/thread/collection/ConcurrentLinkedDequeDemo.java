@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter6.recipe01.core;
+package com.olmlo.thread.collection;
 
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
  * to delete all those elements.
  *
  */
-public class Main {
+public class ConcurrentLinkedDequeDemo{
 
     /**
      * Main method of the class
