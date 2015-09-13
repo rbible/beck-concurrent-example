@@ -18,7 +18,7 @@ public class PoolStateDemo {
 
         // Send 100 request to the server and finish
         for (int i = 0; i < 100; i++) {
-            Task task = new Task("Task " + i);
+            PoolStateTask task = new PoolStateTask("Task " + i);
             server.executeTask(task);
         }
         server.endServer();
@@ -44,7 +44,7 @@ class Server {
      * server uses the executor to execute the request that it receives
      * @param task The request made to the server
      */
-    public void executeTask(Task task) {
+    public void executeTask(PoolStateTask task) {
         System.out.printf("Server: A new task has arrived\n");
         executor.execute(task);
         System.out.printf("Server: Pool Size: %d\n", executor.getPoolSize());
@@ -61,7 +61,7 @@ class Server {
 
 }
 
-class Task implements Runnable {
+class PoolStateTask implements Runnable {
 
     /**
      * The start date of the task
@@ -76,7 +76,7 @@ class Task implements Runnable {
      * Constructor of the class. Initializes the name of the task
      * @param name name asigned to the task
      */
-    public Task(String name) {
+    public PoolStateTask(String name) {
         initDate = new Date();
         this.name = name;
     }

@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter6.recipe09.core;
+package com.olmlo.thread.collection;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
@@ -7,11 +7,8 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
  * and checks that the results are the expected
  *
  */
-public class Main {
+public class AtomicIntegerArrayDemo {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
 
         final int THREADS = 100;

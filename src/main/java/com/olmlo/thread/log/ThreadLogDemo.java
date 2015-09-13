@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter8.recipe07.core;
+package com.olmlo.thread.log;
 
 import java.io.IOException;
 import java.util.Date;
@@ -14,11 +14,9 @@ import java.util.logging.Logger;
  * Main class of the example. It launch five Task objects and write some log messages indicating the evolution of the
  * execution of the program
  */
-public class Main {
+public class ThreadLogDemo {
 
     public static void main(String[] args) {
-
-        /* Get the Logger object */
         Logger logger = MyLogger.getLogger("Core");
 
         /* Write a message indicating the start of the execution */
@@ -37,7 +35,6 @@ public class Main {
         /* Write a log message indicating that the threads have been created */
         logger.log(Level.INFO, "Ten Threads created. Waiting for its finalization");
 
-        /* Wait for the finalization of the threads */
         for (int i = 0; i < threads.length; i++) {
             try {
                 threads[i].join();
@@ -47,7 +44,6 @@ public class Main {
             }
         }
 
-        /* Write a log message indicating the end of the program */
         logger.exiting("Main", "main()");
     }
 
@@ -98,13 +94,7 @@ class MyLogger {
      * @return The Logger object generated.
      */
     public static Logger getLogger(String name) {
-        /*
-         * Get the logger
-         */
         Logger logger = Logger.getLogger(name);
-        /*
-         * Set the level to show all the messages
-         */
         logger.setLevel(Level.ALL);
         try {
             /*
@@ -128,9 +118,6 @@ class MyLogger {
             e.printStackTrace();
         }
 
-        /*
-         * Return the Logger object.
-         */
         return logger;
     }
 
@@ -138,12 +125,8 @@ class MyLogger {
 
 class Task implements Runnable {
 
-    /**
-     * Main method of the task
-     */
     @Override
     public void run() {
-        /* Get the Logger */
         Logger logger = MyLogger.getLogger(this.getClass().getName());
 
         /* Write a message indicating the start of the task */

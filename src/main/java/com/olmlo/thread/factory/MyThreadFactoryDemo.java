@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter7.recipe04.core;
+package com.olmlo.thread.factory;
 
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * that factory and submits a task to the executor
  *
  */
-public class Main {
+public class MyThreadFactoryDemo {
 
     /**
      * @param args
@@ -34,14 +34,8 @@ public class Main {
          */
         MyTask task = new MyTask();
 
-        /*
-         * Submit the task
-         */
         executor.submit(task);
 
-        /*
-         * Shutdown the executor
-         */
         executor.shutdown();
 
         /*
@@ -49,13 +43,8 @@ public class Main {
          */
         executor.awaitTermination(1, TimeUnit.DAYS);
 
-        /*
-         * Write a message indicating the end of the program
-         */
         System.out.printf("Main: End of the program.\n");
-
     }
-
 }
 
 class MyTask implements Runnable {
@@ -155,7 +144,7 @@ class MyThread extends Thread {
         buffer.append(": ");
         buffer.append(" Creation Date: ");
         buffer.append(creationDate);
-        buffer.append(" : Running time: ");
+        buffer.append(" , Running time: ");
         buffer.append(getExecutionTime());
         buffer.append(" Milliseconds.");
         return buffer.toString();

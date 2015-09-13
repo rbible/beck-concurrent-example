@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter7.recipe05.core;
+package com.olmlo.thread.pool;
 
 import java.util.Date;
 import java.util.concurrent.Delayed;
@@ -12,20 +12,14 @@ import java.util.concurrent.TimeUnit;
  * Main class of the example. Creates a MyScheduledThreadPoolExecutor and
  * executes a delayed task and a periodic task in it.
  */
-public class Main {
+public class MyScheduledThreadPoolExecutorDemo {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) throws Exception {
 
-        /* Create a MyScheduledThreadPool object */
         MyScheduledThreadPoolExecutor executor = new MyScheduledThreadPoolExecutor(2);
 
-        /* Create a task object */
         Task task = new Task();
 
-        /* Write the start date of the execution */
         System.out.printf("Main: %s\n", new Date());
 
         /* Send to the executor a delayed task. It will be executed after 1 second of delay */
@@ -34,10 +28,8 @@ public class Main {
         /* Sleeps the thread three seconds */
         TimeUnit.SECONDS.sleep(3);
 
-        /* Create another task */
         task = new Task();
 
-        /* Write the actual date again */
         System.out.printf("Main: %s\n", new Date());
 
         /*
@@ -57,6 +49,38 @@ public class Main {
 
         /* Write a message indicating the end of the program */
         System.out.printf("Main: End of the program.\n");
+    }
+}
+
+class MyScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
+
+    /**
+     * Constructor of the class. Calls the constructor of its parent class using the super keyword
+     * @param corePoolSize Number of threads to keep in the pool
+     */
+    public MyScheduledThreadPoolExecutor(int corePoolSize) {
+        super(corePoolSize);
+    }
+
+    /**
+     * Method that converts a RunnableScheduledFuture task in a MyScheduledTask task
+     */
+    @Override
+    protected <V> RunnableScheduledFuture<V> decorateTask(Runnable runnable, RunnableScheduledFuture<V> task) {
+        MyScheduledTask<V> myTask = new MyScheduledTask<V>(runnable, null, task, this);
+        return myTask;
+    }
+
+    /**
+     * Method that schedule in the executor a periodic tasks. It calls the method of its parent class using
+     * the super keyword and stores the period of the task.
+     */
+    @Override
+    public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
+        ScheduledFuture<?> task = super.scheduleAtFixedRate(command, initialDelay, period, unit);
+        MyScheduledTask<?> myTask = (MyScheduledTask<?>) task;
+        myTask.setPeriod(TimeUnit.MILLISECONDS.convert(period, unit));
+        return task;
     }
 
 }
@@ -159,39 +183,6 @@ class MyScheduledTask<V> extends FutureTask<V> implements RunnableScheduledFutur
     }
 }
 
-class MyScheduledThreadPoolExecutor extends ScheduledThreadPoolExecutor {
-
-    /**
-     * Constructor of the class. Calls the constructor of its parent class using the super keyword
-     * @param corePoolSize Number of threads to keep in the pool
-     */
-    public MyScheduledThreadPoolExecutor(int corePoolSize) {
-        super(corePoolSize);
-    }
-
-    /**
-     * Method that converts a RunnableScheduledFuture task in a MyScheduledTask task
-     */
-    @Override
-    protected <V> RunnableScheduledFuture<V> decorateTask(Runnable runnable, RunnableScheduledFuture<V> task) {
-        MyScheduledTask<V> myTask = new MyScheduledTask<V>(runnable, null, task, this);
-        return myTask;
-    }
-
-    /**
-     * Method that schedule in the executor a periodic tasks. It calls the method of its parent class using
-     * the super keyword and stores the period of the task.
-     */
-    @Override
-    public ScheduledFuture<?> scheduleAtFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
-        ScheduledFuture<?> task = super.scheduleAtFixedRate(command, initialDelay, period, unit);
-        MyScheduledTask<?> myTask = (MyScheduledTask<?>) task;
-        myTask.setPeriod(TimeUnit.MILLISECONDS.convert(period, unit));
-        return task;
-    }
-
-}
-
 class Task implements Runnable {
 
     /**
@@ -203,10 +194,10 @@ class Task implements Runnable {
         System.out.printf("Task: Begin.\n");
         try {
             TimeUnit.SECONDS.sleep(2);
+            System.out.printf("Task: Runing.\n");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.printf("Task: End.\n");
     }
-
 }

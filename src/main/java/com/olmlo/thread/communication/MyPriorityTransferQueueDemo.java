@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter7.recipe09.core;
+package com.olmlo.thread.communication;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -7,92 +7,43 @@ import java.util.concurrent.TransferQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Main class of the example.
- *
- */
-public class Main {
+public class MyPriorityTransferQueueDemo {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) throws Exception {
 
-        /*
-         * Create a Prioriy Transfer Queue
-         */
-        MyPriorityTransferQueue<Event> buffer = new MyPriorityTransferQueue<>();
-
-        /*
-         * Create a Producer object
-         */
-        Producer producer = new Producer(buffer);
-
-        /*
-         * Launch 10 producers
-         */
+        MyPriorityTransferQueue<Event> transferQueue = new MyPriorityTransferQueue<>();
+        TransferProducer producer = new TransferProducer(transferQueue);
         Thread producerThreads[] = new Thread[10];
         for (int i = 0; i < producerThreads.length; i++) {
             producerThreads[i] = new Thread(producer);
             producerThreads[i].start();
         }
 
-        /*
-         * Create and launch the consumer
-         */
-        Consumer consumer = new Consumer(buffer);
+        TransferConsumer consumer = new TransferConsumer(transferQueue);
         Thread consumerThread = new Thread(consumer);
         consumerThread.start();
+        System.out.printf("Main: Buffer: Consumer count: %d\n", transferQueue.getWaitingConsumerCount());
 
-        /*
-         * Write in the console the actual consumer count
-         */
-        System.out.printf("Main: Buffer: Consumer count: %d\n", buffer.getWaitingConsumerCount());
-
-        /*
-         * Transfer an event to the consumer
-         */
         Event myEvent = new Event("Core Event", 0);
-        buffer.transfer(myEvent);
+        transferQueue.transfer(myEvent);
         System.out.printf("Main: My Event has ben transfered.\n");
 
-        /*
-         * Wait for the finalization of the producers
-         */
         for (int i = 0; i < producerThreads.length; i++) {
             producerThreads[i].join();
         }
-
-        /*
-         * Sleep the thread for one second
-         */
         TimeUnit.SECONDS.sleep(1);
+        System.out.printf("Main: Buffer: Consumer count: %d\n", transferQueue.getWaitingConsumerCount());
 
-        /*
-         * Write the actual consumer count
-         */
-        System.out.printf("Main: Buffer: Consumer count: %d\n", buffer.getWaitingConsumerCount());
-
-        /*
-         * Transfer another event
-         */
         myEvent = new Event("Core Event 2", 0);
-        buffer.transfer(myEvent);
+        transferQueue.transfer(myEvent);
 
-        /*
-         * Wait for the finalization of the consumer
-         */
         consumerThread.join();
-
-        /*
-         * Write a message indicating the end of the program
-         */
         System.out.printf("Main: End of the program\n");
     }
 
 }
 
-class Consumer implements Runnable {
+class TransferConsumer implements Runnable {
 
     /**
      * Buffer from which the consumer takes the events
@@ -103,7 +54,7 @@ class Consumer implements Runnable {
      * Constructor of the class. Initializes its attributes
      * @param buffer Buffer from which the consumer takes the events
      */
-    public Consumer(MyPriorityTransferQueue<Event> buffer) {
+    public TransferConsumer(MyPriorityTransferQueue<Event> buffer) {
         this.buffer = buffer;
     }
 
@@ -112,7 +63,7 @@ class Consumer implements Runnable {
      */
     @Override
     public void run() {
-        for (int i = 0; i < 1002; i++) {
+        for (int i = 0; i < 100; i++) {
             try {
                 Event value = buffer.take();
                 System.out.printf("Consumer: %s: %d\n", value.getThread(), value.getPriority());
@@ -319,7 +270,7 @@ class MyPriorityTransferQueue<E> extends PriorityBlockingQueue<E> implements Tra
     }
 }
 
-class Producer implements Runnable {
+class TransferProducer implements Runnable {
 
     /**
      * Buffer used to store the events
@@ -330,7 +281,7 @@ class Producer implements Runnable {
      * Constructor of the class. It initializes its parameters
      * @param buffer Buffer to store the events
      */
-    public Producer(MyPriorityTransferQueue<Event> buffer) {
+    public TransferProducer(MyPriorityTransferQueue<Event> buffer) {
         this.buffer = buffer;
     }
 

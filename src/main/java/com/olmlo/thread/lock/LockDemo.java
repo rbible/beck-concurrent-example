@@ -14,7 +14,7 @@ public class LockDemo {
 
     public static void main(String[] args) throws Exception {
 
-        MyLock lock = new MyLock();
+        MyLock1 lock = new MyLock1();
 
         Thread threads[] = new Thread[5];
 
@@ -49,7 +49,7 @@ public class LockDemo {
     }
 }
 
-class MyLock extends ReentrantLock {
+class MyLock1 extends ReentrantLock {
 
     /**
      * Declare the serial version uid of the class

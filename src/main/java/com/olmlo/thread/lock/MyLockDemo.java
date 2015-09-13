@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter7.recipe08.core;
+package com.olmlo.thread.lock;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -6,15 +6,7 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
-/**
- * Main class of the example
- *
- */
-public class Main {
-
-    /**
-     * @param args
-     */
+public class MyLockDemo {
     public static void main(String[] args) {
 
         /* Create a new MyLock object */
@@ -22,7 +14,7 @@ public class Main {
 
         /* Create and run ten task objects */
         for (int i = 0; i < 10; i++) {
-            Task task = new Task("Task-" + i, lock);
+            MyLockTask task = new MyLockTask("Task-" + i, lock);
             Thread thread = new Thread(task);
             thread.start();
         }
@@ -53,9 +45,6 @@ public class Main {
 
 class MyAbstractQueuedSynchronizer extends AbstractQueuedSynchronizer {
 
-    /**
-     * Serial version UID of the class
-     */
     private static final long serialVersionUID = 1L;
 
     /**
@@ -166,7 +155,7 @@ class MyLock implements Lock {
 
 }
 
-class Task implements Runnable {
+class MyLockTask implements Runnable {
 
     /**
      * Lock used by the task
@@ -183,7 +172,7 @@ class Task implements Runnable {
      * @param name Name of the task
      * @param lock Lock used by the task
      */
-    public Task(String name, MyLock lock) {
+    public MyLockTask(String name, MyLock lock) {
         this.lock = lock;
         this.name = name;
     }

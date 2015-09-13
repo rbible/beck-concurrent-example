@@ -1,4 +1,4 @@
-package com.olmlo.thread.chapter7.recipe03.core;
+package com.olmlo.thread.demo;
 
 import java.util.Date;
 import java.util.concurrent.ThreadFactory;
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * and executes the Thread
  * 	
  */
-public class Main {
+public class MyThreadFactoryDemo2 {
 
     /**
      * @param args
@@ -18,12 +18,12 @@ public class Main {
         /*
          * Create a Factory
          */
-        MyThreadFactory myFactory = new MyThreadFactory("MyThreadFactory");
+        MyThreadFactory2 myFactory = new MyThreadFactory2("MyThreadFactory");
 
         /*
          * Crate a Task
          */
-        MyTask task = new MyTask();
+        MyTask2 task = new MyTask2();
 
         /*
          * Create a Thread using the Factory to execute the Task
@@ -51,7 +51,7 @@ public class Main {
 
 }
 
-class MyTask implements Runnable {
+class MyTask2 implements Runnable {
 
     /**
      * Main method of the Thread. Sleeps the thread during two seconds
@@ -67,7 +67,7 @@ class MyTask implements Runnable {
 
 }
 
-class MyThread extends Thread {
+class MyThread2 extends Thread {
 
     /**
      * Creation date of the Thread
@@ -89,7 +89,7 @@ class MyThread extends Thread {
      * @param target Task to execute
      * @param name Name of the thread
      */
-    public MyThread(Runnable target, String name) {
+    public MyThread2(Runnable target, String name) {
         super(target, name);
         setCreationDate();
     }
@@ -150,7 +150,7 @@ class MyThread extends Thread {
     }
 }
 
-class MyThreadFactory implements ThreadFactory {
+class MyThreadFactory2 implements ThreadFactory {
 
     /**
      * Attribute to store the number of threads created in this factory
@@ -166,7 +166,7 @@ class MyThreadFactory implements ThreadFactory {
      * Constructor of the class. Initialize its parameters
      * @param prefix First part of the name of the threads created with this factory
      */
-    public MyThreadFactory(String prefix) {
+    public MyThreadFactory2(String prefix) {
         this.prefix = prefix;
         counter = 1;
     }
@@ -176,7 +176,7 @@ class MyThreadFactory implements ThreadFactory {
      */
     @Override
     public Thread newThread(Runnable r) {
-        MyThread myThread = new MyThread(r, prefix + "-" + counter);
+        MyThread2 myThread = new MyThread2(r, prefix + "-" + counter);
         counter++;
         return myThread;
     }
