@@ -1,4 +1,4 @@
-package com.olmlo.thread.demo;
+package com.olmlo.thread.app;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.olmlo.thread.demo;
+package com.olmlo.thread.app;
 
 import java.io.FileWriter;
 import java.io.IOException;
