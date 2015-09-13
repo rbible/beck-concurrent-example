@@ -1,4 +1,4 @@
-package com.olmlo.thread.pool.recursive;
+package com.olmlo.thread.pool.forkjoin;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
@@ -19,7 +19,7 @@ public class RecursiveTaskExceptionDemo {
         // Array of 100 integers
         int array[] = new int[100];
         // Task to process the array
-        Task task = new Task(array, 0, 100);
+        Task6 task = new Task6(array, 0, 100);
         // ForkJoinPool to execute the Task
         ForkJoinPool pool = new ForkJoinPool();
 
@@ -48,7 +48,7 @@ public class RecursiveTaskExceptionDemo {
     }
 }
 
-class Task extends RecursiveTask<Integer> {
+class Task6 extends RecursiveTask<Integer> {
 
     /**
      * Serial Version UID
@@ -72,7 +72,7 @@ class Task extends RecursiveTask<Integer> {
      * @param start Start position of the block of elements this task has to process
      * @param end End position of the block of elements this task has to process
      */
-    public Task(int array[], int start, int end) {
+    public Task6(int array[], int start, int end) {
         this.array = array;
         this.start = start;
         this.end = end;
@@ -101,8 +101,8 @@ class Task extends RecursiveTask<Integer> {
 
         } else {
             int mid = (end + start) / 2;
-            Task task1 = new Task(array, start, mid);
-            Task task2 = new Task(array, mid, end);
+            Task6 task1 = new Task6(array, start, mid);
+            Task6 task2 = new Task6(array, mid, end);
             invokeAll(task1, task2);
             System.out.printf("Task: Result form %d to %d: %d\n", start, mid, task1.join());
             System.out.printf("Task: Result form %d to %d: %d\n", mid, end, task2.join());

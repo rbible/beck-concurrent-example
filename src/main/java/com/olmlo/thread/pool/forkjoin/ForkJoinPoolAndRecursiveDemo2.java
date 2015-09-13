@@ -1,4 +1,4 @@
-package com.olmlo.thread.forkjoin;
+package com.olmlo.thread.pool.forkjoin;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
  * pool that executes the task
  *
  */
-public class ForkJoinPoolAndRecursiveDemo {
+public class ForkJoinPoolAndRecursiveDemo2 {
 
     public static void main(String[] args) throws Exception {
 

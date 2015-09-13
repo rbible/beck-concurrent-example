@@ -1,4 +1,4 @@
-package com.olmlo.thread.pool.cheduled;
+package com.olmlo.thread.pool.scheduled;
 
 import java.util.Date;
 import java.util.concurrent.Executors;

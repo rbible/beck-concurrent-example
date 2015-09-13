@@ -1,4 +1,4 @@
-package com.olmlo.thread.pool;
+package com.olmlo.thread.pool.scheduled;
 
 import java.util.Date;
 import java.util.concurrent.Delayed;

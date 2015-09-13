@@ -1,4 +1,4 @@
-package com.olmlo.thread.forkjoin;
+package com.olmlo.thread.pool.forkjoin;
 
 import java.util.Date;
 import java.util.concurrent.ForkJoinPool;

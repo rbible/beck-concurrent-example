@@ -3,16 +3,8 @@ package com.olmlo.thread.safe;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Main class of the example.
- *
- */
 public class SafeDemo {
 
-    /**
-     * Main method of the example
-     * @param args
-     */
     public static void main(String[] args) {
         // Creates a task
         SafeTask task = new SafeTask();

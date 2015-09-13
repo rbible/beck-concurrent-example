@@ -1,4 +1,4 @@
-package com.olmlo.thread.pool.recursive;
+package com.olmlo.thread.pool.forkjoin;
 
 import java.io.File;
 import java.util.ArrayList;
