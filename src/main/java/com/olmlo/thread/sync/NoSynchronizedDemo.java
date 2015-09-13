@@ -1,4 +1,4 @@
-package com.olmlo.thread.synchronize.bank;
+package com.olmlo.thread.sync;
 
 /**
  * Main class of the example. It creates an account, a company and a bank

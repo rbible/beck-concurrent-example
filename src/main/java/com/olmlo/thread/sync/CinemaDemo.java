@@ -1,4 +1,4 @@
-package com.olmlo.thread.synchronize;
+package com.olmlo.thread.sync;
 
 /**
  * Core class of the example. Creates a cinema and two threads for

@@ -1,4 +1,4 @@
-package com.olmlo.thread.pool.cache.app2;
+package com.olmlo.thread.pool.cache;
 
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -16,7 +16,7 @@ public class CachedThreadPoolDemo2 {
         ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
         Random random = new Random();
         for (int i = 0; i < 10; i++) {
-            Task task = new Task(random.nextInt(10000));
+            Task5 task = new Task5(random.nextInt(10000));
             executor.submit(task);
         }
 
@@ -62,7 +62,7 @@ public class CachedThreadPoolDemo2 {
     }
 }
 
-class Task implements Runnable {
+class Task5 implements Runnable {
 
     /**
      * Number of milliseconds this task is going to sleep the thread
@@ -75,7 +75,7 @@ class Task implements Runnable {
      * @param milliseconds
      *            Number of milliseconds this task is going to sleep the thread
      */
-    public Task(long milliseconds) {
+    public Task5(long milliseconds) {
         this.milliseconds = milliseconds;
     }
 
