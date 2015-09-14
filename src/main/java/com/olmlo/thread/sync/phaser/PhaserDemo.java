@@ -9,9 +9,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class PhaserDemo {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) throws Exception {
         /*
          * Create a new Phaser for three participants
@@ -24,9 +21,6 @@ public class PhaserDemo {
             thread.start();
         }
 
-        /*
-         * Write information about the Phaser
-         */
         for (int i = 0; i < 10; i++) {
             System.out.printf("********************\n");
             System.out.printf("Main: Phaser Log\n");
@@ -90,7 +84,7 @@ class Task implements Runnable {
          * End of Phase 1
          */
         phaser.arriveAndAwaitAdvance();
-        
+
         /*
          * Phase 2
          */
@@ -105,7 +99,7 @@ class Task implements Runnable {
          * End of Phase 2
          */
         phaser.arriveAndAwaitAdvance();
-        
+
         /*
          * Phase 3
          */

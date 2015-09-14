@@ -1,4 +1,4 @@
-package com.olmlo.thread.sync.exchanger;
+package com.olmlo.thread.data.exchanger;
 
 import java.util.concurrent.Exchanger;
 
